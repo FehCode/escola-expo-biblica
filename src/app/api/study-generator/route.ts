@@ -31,6 +31,7 @@ interface StudyPlan {
 export async function POST(request: NextRequest) {
   try {
     const { topic, duration, difficulty } = await request.json();
+    console.log('Study Generator - Input: topic=', topic, ', duration=', duration, ', difficulty=', difficulty);
     
     if (!topic) {
       return NextResponse.json({ error: 'Tema é obrigatório' }, { status: 400 });
@@ -38,18 +39,23 @@ export async function POST(request: NextRequest) {
 
     try {
       const enhancedSystemPrompt = studyGeneratorPrompt(duration, difficulty, topic);
+      console.log('Study Generator - System Prompt:', enhancedSystemPrompt);
+
+      const userPrompt = `Crie um plano de estudo bíblico detalhado sobre o tema "${topic}" com duração de ${duration} dias para nível ${difficulty}.`;
+      const messages = [
+        {
+          role: 'user' as const,
+          parts: [{ text: enhancedSystemPrompt }]
+        },
+        {
+          role: 'user' as const,
+          parts: [{ text: userPrompt }]
+        }
+      ];
+      console.log('Study Generator - Messages sent to Gemini:', JSON.stringify(messages, null, 2));
 
       const response = await callGeminiWithFallback(
-        [
-          {
-            role: 'user' as const,
-            parts: [{ text: enhancedSystemPrompt }]
-          },
-          {
-            role: 'user' as const,
-            parts: [{ text: `Crie um plano de estudo bíblico detalhado sobre o tema "${topic}" com duração de ${duration} dias para nível ${difficulty}.` }]
-          }
-        ], 
+        messages, 
         0.9, // Aumentar a temperatura para mais criatividade
         4000, // Aumentar o maxOutputTokens para respostas mais longas
         // Enhanced fallback JSON response
@@ -71,6 +77,7 @@ export async function POST(request: NextRequest) {
           assessmentMethod: "Avaliação através de: 1) Autoavaliação diária, 2) Compartilhamento em grupo, 3) Aplicação prática dos princípios aprendidos, 4) Memorização dos versículos propostos"
         }, null, 2)
       );
+      console.log('Study Generator - Raw Gemini Response:', response);
 
       // Try to parse the response as JSON
       let studyPlan: StudyPlan;
@@ -78,7 +85,9 @@ export async function POST(request: NextRequest) {
         // Extract JSON from the response if it's wrapped in markdown code blocks
         const jsonMatch = response.match(/```json\n([\s\S]*?)\n```/) || response.match(/{[\s\S]*}/);
         const jsonString = jsonMatch ? (jsonMatch[1] || jsonMatch[0]) : response;
+        console.log('Study Generator - Extracted JSON String:', jsonString);
         studyPlan = JSON.parse(jsonString);
+        console.log('Study Generator - Parsed Study Plan (before sanitization):', studyPlan);
         
         // Apply sanitization and formatting to all string fields in the parsed study plan
         studyPlan = {
@@ -101,6 +110,7 @@ export async function POST(request: NextRequest) {
           recommendedResources: (studyPlan.recommendedResources || ["Bíblia", "Caderno de anotações"]).map(resource => sanitizeAndFormatResponse(resource, 'practical')),
           assessmentMethod: sanitizeAndFormatResponse(studyPlan.assessmentMethod || "Autoavaliação e aplicação prática", 'practical')
         };
+        console.log('Study Generator - Parsed Study Plan (after sanitization):', studyPlan);
         
       } catch (parseError) {
         console.error('Error parsing JSON response from Gemini, falling back to structured object:', parseError);
@@ -116,6 +126,7 @@ export async function POST(request: NextRequest) {
           recommendedResources: ["Bíblia", "Caderno de anotações", "Dicionário bíblico"].map(resource => sanitizeAndFormatResponse(resource, 'practical')),
           assessmentMethod: sanitizeAndFormatResponse("Reflexão pessoal e aplicação prática dos princípios aprendidos", 'practical')
         };
+        console.log('Study Generator - Fallback Study Plan:', studyPlan);
       }
 
       return NextResponse.json({ studyPlan });
@@ -156,6 +167,7 @@ export async function POST(request: NextRequest) {
         ].map(resource => sanitizeAndFormatResponse(resource, 'practical')),
         assessmentMethod: sanitizeAndFormatResponse("Autoavaliação diária, compartilhamento em grupo e aplicação prática dos princípios aprendidos.", 'practical')
       };
+      console.log('Study Generator - Fallback Study Plan (AI Error):', fallbackStudyPlan);
       return NextResponse.json({ studyPlan: fallbackStudyPlan });
     }
   } catch (error) {
