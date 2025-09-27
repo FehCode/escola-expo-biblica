@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { callZAIWithFallback } from '@/lib/zai-api';
+import { callGeminiWithFallback } from '@/lib/gemini-api';
 import { sanitizeAndFormatResponse } from '@/lib/ai-sanitizer';
 
 export const runtime = 'nodejs';
@@ -85,15 +85,15 @@ Instruções específicas:
 
 Responda APENAS com o JSON válido, sem texto adicional.`;
 
-      const response = await callZAIWithFallback(
+      const response = await callGeminiWithFallback(
         [
           {
-            role: 'system',
-            content: enhancedSystemPrompt
+            role: 'user' as const,
+            parts: [{ text: enhancedSystemPrompt }]
           },
           {
-            role: 'user',
-            content: `Crie um plano de estudo bíblico detalhado sobre o tema "${topic}" com duração de ${duration} dias para nível ${difficulty}.`
+            role: 'user' as const,
+            parts: [{ text: `Crie um plano de estudo bíblico detalhado sobre o tema "${topic}" com duração de ${duration} dias para nível ${difficulty}.` }]
           }
         ], 
         0.7, 
@@ -169,7 +169,7 @@ Responda APENAS com o JSON válido, sem texto adicional.`;
 
       return NextResponse.json({ studyPlan });
     } catch (aiError) {
-      console.error('Error calling ZAI API:', aiError);
+      console.error('Error calling Gemini API:', aiError);
       
       // Enhanced fallback study plan when AI service is not available
 
