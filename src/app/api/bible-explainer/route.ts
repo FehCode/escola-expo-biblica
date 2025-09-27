@@ -24,44 +24,16 @@ Forneça explicações estruturadas que incluam estas seções exatas com os tí
 - Informações sobre o gênero literário
 - Detalhes sobre o cenário político e social da época
 
-**Significado Teológico:**
-- Doutrinas e verdades centrais do texto
-- Significado das palavras-chave no original (grego/hebraico)
-- Mensagem teológica principal
-- Implicações para a compreensão de Deus e Seu plano
 - Conexões com a teologia sistemática
 
-**Aplicações Práticas:**
-- Como aplicar este texto na vida cristã contemporânea
-- Princípios eternos extraídos do texto
-- Desafios e encorajamentos para hoje
-- Ações concretas sugeridas
 - Exemplos práticos de aplicação
 
-**Conexões Bíblicas:**
-- Referências a outros textos bíblicos relacionados
-- Como este texto se encaixa na narrativa bíblica geral
-- Conexões com o Antigo e/ou Novo Testamento
-- Progresso da revelação bíblica
 - Tipologia e profecia (quando aplicável)
 
-**Temas Principais:**
-- Liste 3-5 temas principais usando formato: • Tema 1
-- • Tema 2
-- • Tema 3
-- • Tema 4
 - • Tema 5
-
-**Para Reflexão:**
-- Crie 2-3 questões para reflexão pessoal usando formato: 1. Questão...
-- 2. Questão...
-- 3. Questão...
 
 Use uma linguagem acessível mas teologicamente precisa. Mantenha o foco na centralidade de Cristo e na glória de Deus. Inclua referências bíblicas específicas sempre que relevante.
 
-📝 **Formatação:**
-- Use **negrito** para termos teológicos importantes
-- Use *itálico* para ênfase suave
 - Use bullet points (•) para listas
 - Inclua referências bíblicas no formato (Livro Capítulo:Versículo)
 - Seja específico e detalhado em cada seção`;
@@ -79,29 +51,39 @@ Use uma linguagem acessível mas teologicamente precisa. Mantenha o foco na cent
         ], 
         0.7, 
         2000,
-        // Enhanced fallback response
-        `**Contexto Histórico e Cultural:**
-Este texto bíblico foi escrito em um contexto histórico específico que molda sua mensagem e significado. O autor escreveu para um público particular, enfrentando circunstâncias únicas que influenciaram a mensagem divina.
+          `**Contexto Histórico e Cultural:**
+Autor: (Desconhecido ou conforme o livro)
+Data aproximada: (Insira período)
+Gênero literário: (Narrativa, poesia, profecia, epístola, etc.)
+Público original: (Descreva o público)
+Cenário político/social: (Descreva brevemente)
 
 **Significado Teológico:**
-A passagem revela verdades fundamentais sobre o caráter de Deus, Sua vontade e Seu relacionamento com a humanidade. O significado teológico aponta para a natureza de Deus e Seu plano redentor através de Cristo.
+Principais doutrinas: (Liste pelo menos 2)
+Palavras-chave no original: (Explique termos importantes)
+Mensagem central: (Resuma em 1-2 frases)
+Conexão com Cristo: (Como aponta para Jesus ou o plano de Deus)
 
 **Aplicações Práticas:**
-Podemos aplicar este texto em nossas vidas através da meditação, oração e obediência aos princípios aqui apresentados. A aplicação prática transforma conhecimento em ação e fé em obras.
+1. O que este texto ensina para minha vida hoje?
+2. Como posso praticar este princípio?
+3. Quais desafios e encorajamentos encontro aqui?
 
 **Conexões Bíblicas:**
-Este texto se relaciona com o ensino geral das Escrituras sobre a revelação de Deus à humanidade. As conexões bíblicas nos mostram a unidade das Escrituras e o progresso da revelação divina.
+Outros textos relacionados: (Liste referências)
+Como se encaixa na narrativa geral: (Explique)
+Tipologia/profecia: (Se aplicável)
 
 **Temas Principais:**
-• Revelação divina
-• Relacionamento com Deus
-• Propósito eterno
-• Graça e verdade
-• Transformação espiritual
+• Tema 1
+• Tema 2
+• Tema 3
 
 **Para Reflexão:**
-1. Como este texto impacta minha compreensão de Deus?
-2. De que forma posso aplicar estes princípios em minha vida diária?
+1. O que Deus está me mostrando neste texto?
+2. Como posso responder a este ensino?
+3. Que mudança prática posso fazer esta semana?
+`;
 3. Como esta passagem aponta para Cristo e Sua obra redentora?`
       );
 

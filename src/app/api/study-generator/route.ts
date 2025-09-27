@@ -172,25 +172,39 @@ Responda APENAS com o JSON válido, sem texto adicional.`;
       console.error('Error calling ZAI API:', aiError);
       
       // Enhanced fallback study plan when AI service is not available
+
       const fallbackStudyPlan: StudyPlan = {
         title: sanitizeAndFormatResponse(`Plano de Estudo: ${topic}`, 'practical'),
         description: sanitizeAndFormatResponse(`Um plano de estudo bíblico completo sobre ${topic}, projetado para ${duration} dias de estudo intensivo e reflexivo.`, 'practical'),
         duration: `${duration} dias`,
         difficulty: difficulty,
         overallObjective: sanitizeAndFormatResponse(`Aprofundar o conhecimento sobre ${topic} através de estudo sistemático das Escrituras, oração e aplicação prática.`, 'practical'),
-        dailyBreakdown: generateEnhancedDailyBreakdown(parseInt(duration), topic, difficulty),
-        keyThemes: [topic, "Crescimento espiritual", "Estudo bíblico", "Aplicação prática", "Vida de oração"].map(theme => sanitizeAndFormatResponse(theme, 'theological')),
+        dailyBreakdown: Array.from({ length: parseInt(duration) }, (_, i) => ({
+          day: i + 1,
+          title: sanitizeAndFormatResponse(`Dia ${i + 1}: Estudo sobre ${topic}`, 'practical'),
+          description: sanitizeAndFormatResponse(`Aprofunde-se no tema "${topic}" com leitura bíblica, reflexão e oração.`, 'practical'),
+          scriptureReferences: ["Salmo 119:105", "2 Timóteo 3:16-17"],
+          keyPoints: [
+            sanitizeAndFormatResponse("Compreensão do texto bíblico", 'practical'),
+            sanitizeAndFormatResponse("Aplicação prática para a vida", 'practical'),
+            sanitizeAndFormatResponse("Oração e reflexão", 'practical')
+          ],
+          reflectionQuestions: [
+            sanitizeAndFormatResponse("O que Deus está me ensinando hoje?", 'practical'),
+            sanitizeAndFormatResponse("Como posso aplicar este princípio?", 'practical')
+          ],
+          memoryVerse: sanitizeAndFormatResponse("João 3:16", 'theological'),
+          prayerFocus: sanitizeAndFormatResponse("Agradeça a Deus pela Sua Palavra e peça sabedoria para aplicá-la.", 'practical')
+        })),
+        keyThemes: [topic, "Estudo bíblico", "Crescimento espiritual"].map(theme => sanitizeAndFormatResponse(theme, 'theological')),
         recommendedResources: [
-          "Bíblia de estudo com notas e referências",
-          "Caderno de anotações para reflexões pessoais",
-          "Dicionário bíblico para consulta rápida",
-          "Comentários bíblicos sobre o tema",
-          "Hinário para cânticos de adoração",
-          "Canetas coloridas para marcação textual"
+          "Bíblia de estudo",
+          "Caderno de anotações",
+          "Dicionário bíblico",
+          "Comentários sobre o tema"
         ].map(resource => sanitizeAndFormatResponse(resource, 'practical')),
-        assessmentMethod: sanitizeAndFormatResponse("Avaliação através de: 1) Autoavaliação diária, 2) Compartilhamento em grupo, 3) Aplicação prática dos princípios aprendidos, 4) Memorização dos versículos propostos", 'practical')
+        assessmentMethod: sanitizeAndFormatResponse("Autoavaliação diária, compartilhamento em grupo e aplicação prática dos princípios aprendidos.", 'practical')
       };
-
       return NextResponse.json({ studyPlan: fallbackStudyPlan });
     }
   } catch (error) {

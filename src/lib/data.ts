@@ -7543,12 +7543,29 @@ export const coursesData: Course[] = [
       {
         id: 'eb-1',
         title: 'Exegese vs. Eisegese',
-        content: '<h2>Tirando para Fora vs. Colocando Para Dentro</h2><p>A exegese busca extrair o significado do texto...</p>'
+        content: `<h2>Exegese vs. Eisegese</h2>
+<p><strong>Exegese</strong> é o processo de "tirar para fora" o significado do texto bíblico, buscando entender o que o autor original quis comunicar ao seu público. <strong>Eisegese</strong> é o oposto: inserir ideias ou pressupostos pessoais no texto, distorcendo seu sentido.</p>
+<ul>
+<li><strong>Exegese:</strong> Respeita o contexto histórico, literário e gramatical.</li>
+<li><strong>Eisegese:</strong> Ignora o contexto, aplicando ideias modernas ou pessoais.</li>
+</ul>
+<h3>Exemplo Prático</h3>
+<p>Leia Filipenses 4:13. Uma <em>exegese</em> correta considera o contexto de sofrimento e dependência de Paulo. Uma <em>eisegese</em> pode usar o texto para afirmar que "posso realizar qualquer sonho", ignorando o contexto.</p>
+<h3>Aplicação</h3>
+<p>Busque sempre a intenção original do autor antes de aplicar o texto à sua vida.</p>`
       },
       {
         id: 'eb-2',
         title: 'Ferramentas de Análise',
-        content: '<h2>Concordâncias, Léxicos e Comentários</h2><p>As ferramentas certas são cruciais...</p>'
+        content: `<h2>Ferramentas Essenciais para Exegese</h2>
+<ul>
+<li><strong>Concordância Bíblica:</strong> Localiza todas as ocorrências de uma palavra.</li>
+<li><strong>Léxico:</strong> Explica o significado das palavras no original (hebraico/aramaico/grego).</li>
+<li><strong>Comentários Bíblicos:</strong> Trazem contexto histórico, cultural e teológico.</li>
+<li><strong>Bíblias de Estudo:</strong> Notas e mapas ajudam a visualizar o contexto.</li>
+</ul>
+<h3>Exemplo Prático</h3>
+<p>Ao estudar "amor" em 1 Coríntios 13, use um léxico para entender o termo "ágape" e um comentário para ver como era entendido na cultura greco-romana.</p>`
       },
       {
         id: 'eb-quiz',
@@ -7577,12 +7594,31 @@ export const coursesData: Course[] = [
       {
         id: 'gl-1',
         title: 'Interpretando Narrativas',
-        content: '<h2>As Histórias de Deus</h2><p>As narrativas bíblicas não são apenas exemplos morais...</p>'
+        content: `<h2>Interpretando Narrativas Bíblicas</h2>
+<p>As narrativas são o gênero mais comum da Bíblia. Elas contam a história da relação de Deus com a humanidade.</p>
+<ul>
+<li><strong>Contexto:</strong> Pergunte: Quem? Onde? Quando? Por quê?</li>
+<li><strong>Personagens:</strong> Observe motivações, falhas e crescimento.</li>
+<li><strong>Propósito:</strong> Nem toda narrativa é prescritiva (modelo a ser seguido); muitas são descritivas (relato do que aconteceu).</li>
+</ul>
+<h3>Exemplo Prático</h3>
+<p>Em Gênesis 39, José foge da tentação. O texto mostra fidelidade a Deus, mas não significa que toda situação terá o mesmo desfecho.</p>
+<h3>Aplicação</h3>
+<p>Busque o princípio eterno por trás da história, não apenas a ação dos personagens.</p>`
       },
       {
         id: 'gl-2',
         title: 'Interpretando Poesia (Salmos)',
-        content: '<h2>A Linguagem do Coração</h2><p>A poesia hebraica usa paralelismo...</p>'
+        content: `<h2>Interpretando Poesia Bíblica</h2>
+<p>A poesia hebraica é marcada pelo <strong>paralelismo</strong> (repetição de ideias) e linguagem figurada.</p>
+<ul>
+<li><strong>Paralelismo:</strong> Sinônimo, antitético, sintético.</li>
+<li><strong>Imagens e Metáforas:</strong> "O Senhor é meu pastor" (Sl 23) não é literal, mas expressa cuidado e provisão.</li>
+</ul>
+<h3>Exemplo Prático</h3>
+<p>Leia Salmo 1. Note como o justo é comparado a uma árvore e o ímpio à palha.</p>
+<h3>Aplicação</h3>
+<p>Procure o sentimento e a verdade teológica por trás das imagens poéticas.</p>`
       },
       {
         id: 'gl-quiz',
