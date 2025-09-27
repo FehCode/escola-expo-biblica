@@ -1,0 +1,490 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom styles for the Biblical School */
+.prose-custom {
+  line-height: 1.6;
+}
+
+.prose-custom h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+  color: #1e293b;
+}
+
+.prose-custom h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  margin-top: 1.25rem;
+  color: #334155;
+}
+
+.prose-custom h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+  color: #475569;
+}
+
+.prose-custom p {
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+.prose-custom ul {
+  list-style-position: inside;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+.prose-custom li {
+  margin-bottom: 0.5rem;
+  text-align: justify;
+}
+
+.prose-custom strong {
+  font-weight: 600;
+  color: inherit;
+}
+
+.prose-custom em {
+  font-style: italic;
+  color: inherit;
+}
+
+/* Simple spacing for chatbot responses */
+.ai-formatted-content {
+  line-height: 1.6;
+}
+
+.ai-formatted-content p {
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+.ai-formatted-content .flex {
+  margin-bottom: 0.5rem;
+}
+
+.ai-formatted-content .flex:last-child {
+  margin-bottom: 0;
+}
+
+/* Chatbot specific styles */
+.prose-custom .text-indigo-100 {
+  color: #e0e7ff;
+}
+
+.prose-custom .text-indigo-50 {
+  color: #f0f4ff;
+}
+
+.prose-custom .prose-headings\:text-indigo-100 h2,
+.prose-custom .prose-headings\:text-indigo-100 h3 {
+  color: #e0e7ff;
+}
+
+.prose-custom .prose-p\:text-indigo-50 p {
+  color: #f0f4ff;
+}
+
+.prose-custom .prose-strong\:text-indigo-50 strong {
+  color: #f0f4ff;
+}
+
+.prose-custom .prose-em\:text-indigo-200 em {
+  color: #c7d2fe;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.slide-in-up {
+  animation: slideInUp 0.4s ease-out;
+}
+
+@keyframes slideInUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Loading animation for chatbot */
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1.4s ease-in-out infinite both;
+}
+
+/* Enhanced AI Response Formatting Styles */
+.ai-formatted-content {
+  line-height: 1.75;
+}
+
+.ai-formatted-content p {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.ai-formatted-content .font-bold {
+  font-weight: 700;
+}
+
+.ai-formatted-content .italic {
+  font-style: italic;
+}
+
+.ai-formatted-content .font-semibold {
+  font-weight: 600;
+}
+
+.ai-formatted-content .font-medium {
+  font-weight: 500;
+}
+
+.ai-formatted-content .uppercase {
+  text-transform: uppercase;
+}
+
+.ai-formatted-content .tracking-wide {
+  letter-spacing: 0.025em;
+}
+
+.ai-formatted-content .underline {
+  text-decoration: underline;
+}
+
+.ai-formatted-content .decoration-dotted {
+  text-decoration-style: dotted;
+}
+
+.ai-formatted-content .leading-relaxed {
+  line-height: 1.625;
+}
+
+.ai-formatted-content .mb-4 {
+  margin-bottom: 1rem;
+}
+
+.ai-formatted-content .px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+.ai-formatted-content .py-0\.5 {
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+}
+
+.ai-formatted-content .rounded {
+  border-radius: 0.25rem;
+}
+
+.ai-formatted-content .rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.ai-formatted-content .shadow-sm {
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+.ai-formatted-content .border {
+  border-width: 1px;
+}
+
+.ai-formatted-content .bg-indigo-50 {
+  background-color: rgb(239 246 255);
+}
+
+.ai-formatted-content .border-indigo-200 {
+  border-color: rgb(199 210 254);
+}
+
+.ai-formatted-content .text-indigo-700 {
+  color: rgb(67 56 202);
+}
+
+.ai-formatted-content .text-purple-600 {
+  color: rgb(147 51 234);
+}
+
+.ai-formatted-content .text-green-600 {
+  color: rgb(22 163 74);
+}
+
+.ai-formatted-content .text-amber-600 {
+  color: rgb(217 119 6);
+}
+
+.ai-formatted-content .text-red-600 {
+  color: rgb(220 38 38);
+}
+
+.ai-formatted-content .text-slate-900 {
+  color: rgb(15 23 42);
+}
+
+.ai-formatted-content .text-slate-800 {
+  color: rgb(30 41 59);
+}
+
+.ai-formatted-content .text-slate-700 {
+  color: rgb(51 65 85);
+}
+
+.ai-formatted-content .text-slate-600 {
+  color: rgb(71 85 105);
+}
+
+.ai-formatted-content .text-sm {
+  font-size: 0.875rem;
+}
+
+.ai-formatted-content .text-base {
+  font-size: 1rem;
+}
+
+.ai-formatted-content .text-lg {
+  font-size: 1.125rem;
+}
+
+.ai-formatted-content .text-xl {
+  font-size: 1.25rem;
+}
+
+.ai-formatted-content .text-2xl {
+  font-size: 1.5rem;
+}
+
+.ai-formatted-content .text-3xl {
+  font-size: 1.875rem;
+}
+
+.ai-formatted-content br {
+  display: block;
+  margin: 0.5rem 0;
+  content: "";
+}
+
+.ai-formatted-content .flex {
+  display: flex;
+}
+
+.ai-formatted-content .items-center {
+  align-items: center;
+}
+
+.ai-formatted-content .gap-2 {
+  gap: 0.5rem;
+}
+
+.ai-formatted-content .mb-3 {
+  margin-bottom: 0.75rem;
+}
+
+.ai-formatted-content .mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.ai-formatted-content .last\:mb-0:last-child {
+  margin-bottom: 0;
+}
+
+.ai-formatted-content .hover\:bg-indigo-50:hover {
+  background-color: rgb(239 246 255);
+}
+
+.ai-formatted-content .transition-colors {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.ai-formatted-content .transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Dark mode support for AI formatted content */
+.dark .ai-formatted-content .text-indigo-700 {
+  color: rgb(165 180 252);
+}
+
+.dark .ai-formatted-content .text-purple-600 {
+  color: rgb(196 181 253);
+}
+
+.dark .ai-formatted-content .text-green-600 {
+  color: rgb(134 239 172);
+}
+
+.dark .ai-formatted-content .text-amber-600 {
+  color: rgb(252 211 77);
+}
+
+.dark .ai-formatted-content .text-red-600 {
+  color: rgb(248 113 113);
+}
+
+.dark .ai-formatted-content .text-slate-900 {
+  color: rgb(241 245 249);
+}
+
+.dark .ai-formatted-content .text-slate-800 {
+  color: rgb(226 232 240);
+}
+
+.dark .ai-formatted-content .text-slate-700 {
+  color: rgb(203 213 225);
+}
+
+.dark .ai-formatted-content .text-slate-600 {
+  color: rgb(148 163 184);
+}
+
+.dark .ai-formatted-content .bg-indigo-50 {
+  background-color: rgb(30 41 59);
+}
+
+.dark .ai-formatted-content .border-indigo-200 {
+  border-color: rgb(99 102 241);
+}
