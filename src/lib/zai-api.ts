@@ -1,6 +1,10 @@
 // Z.AI Open Platform API client
 const ZAI_API_URL = 'https://api.z.ai/api/paas/v4/chat/completions';
-const ZAI_API_KEY = process.env.ZAI_API_KEY || 'c993436717ab4577a973e4ac01977aff.nykcncTPtDKF5KDQ';
+const ZAI_API_KEY = process.env.ZAI_API_KEY;
+
+if (!ZAI_API_KEY) {
+  throw new Error('ZAI_API_KEY is not defined in environment variables.');
+}
 
 interface ZAIMessage {
   role: 'system' | 'user' | 'assistant';
