@@ -50,7 +50,15 @@ export function formatAIResponse(text: string, options: FormatOptions = {}): str
   
   let formattedText = text;
 
-  // 1. Format bold text (**text**)
+  // 1. Format bold+italic text (***text***) - Process first to avoid partial matches
+  if (opts.enableEmphasis) {
+    formattedText = formattedText.replace(
+      /\*\*\*(.*?)\*\*\*/g, 
+      (match, content) => `<strong class="font-bold italic text-slate-900">${content}</strong>`
+    );
+  }
+
+  // 2. Format bold text (**text**)
   if (opts.enableEmphasis) {
     formattedText = formattedText.replace(
       /\*\*(.*?)\*\*/g, 
@@ -58,19 +66,11 @@ export function formatAIResponse(text: string, options: FormatOptions = {}): str
     );
   }
 
-  // 2. Format italic text (*text*)
+  // 3. Format italic text (*text*)
   if (opts.enableEmphasis) {
     formattedText = formattedText.replace(
       /\*([^*]+)\*/g, 
       (match, content) => `<em class="italic text-slate-700">${content}</em>`
-    );
-  }
-
-  // 3. Format bold+italic text (***text***)
-  if (opts.enableEmphasis) {
-    formattedText = formattedText.replace(
-      /\*\*\*(.*?)\*\*\*/g, 
-      (match, content) => `<strong class="font-bold italic text-slate-900">${content}</strong>`
     );
   }
 
@@ -133,12 +133,12 @@ export function formatAIResponse(text: string, options: FormatOptions = {}): str
   }
 
   // 9. Add paragraph spacing and line breaks
-  formattedText = formattedText.replace(/\n\n/g, '</p><p class="mb-4 text-slate-700 leading-relaxed">');
+  formattedText = formattedText.replace(/\n\n/g, '</p><p class="mb-6 text-slate-700 leading-relaxed">');
   formattedText = formattedText.replace(/\n/g, '<br />');
 
   // 10. Wrap in paragraph tags
   if (!formattedText.startsWith('<')) {
-    formattedText = `<p class="mb-4 text-slate-700 leading-relaxed">${formattedText}</p>`;
+    formattedText = `<p class="mb-6 text-slate-700 leading-relaxed">${formattedText}</p>`;
   }
 
   return formattedText;
@@ -222,6 +222,34 @@ export function formatSectionedResponse(sections: Array<{ title: string; content
       </div>
     `;
   }).join('');
+}
+
+/**
+ * Parse Gemini response text into structured sections
+ */
+export function parseGeminiResponseToSections(responseText: string): Array<{ title: string; content: string }> {
+  const sections: Array<{ title: string; content: string }> = [];
+  const lines = responseText.split('\n');
+  let currentTitle = '';
+  let currentContent: string[] = [];
+
+  for (const line of lines) {
+    if (line.startsWith('## ')) {
+      if (currentTitle && currentContent.length > 0) {
+        sections.push({ title: currentTitle, content: currentContent.join('\n').trim() });
+      }
+      currentTitle = line.substring(3).trim();
+      currentContent = [];
+    } else {
+      currentContent.push(line);
+    }
+  }
+
+  if (currentTitle && currentContent.length > 0) {
+    sections.push({ title: currentTitle, content: currentContent.join('\n').trim() });
+  }
+
+  return sections;
 }
 
 function getSectionIcon(type: string): string {

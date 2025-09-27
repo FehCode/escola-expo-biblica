@@ -122,6 +122,6 @@ export async function callGeminiWithFallback(
     }
     
     // Default fallback response
-    return 'Desculpe, estou enfrentando dificuldades técnicas para gerar uma resposta no momento. Por favor, tente novamente em alguns instantes. Se o problema persistir, entre em contato com o suporte.';
+    return 'Desculpe, não consegui gerar uma resposta no momento devido a um problema técnico. Por favor, verifique sua conexão com a internet ou tente novamente mais tarde. Se o problema persistir, entre em contato com o suporte técnico.';
   }
 }

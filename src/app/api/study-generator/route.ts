@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { callGeminiWithFallback } from '@/lib/gemini-api';
 import { sanitizeAndFormatResponse } from '@/lib/ai-sanitizer';
+import { studyGeneratorPrompt } from '@/lib/study-generator-prompt';
 
 export const runtime = 'nodejs';
 
@@ -36,54 +37,7 @@ export async function POST(request: NextRequest) {
     }
 
     try {
-      const enhancedSystemPrompt = `Você é um especialista em educação teológica e design de currículos bíblicos com experiência em criação de planos de estudo estruturados. Sua tarefa é criar planos de estudo detalhados e personalizados.
-
-Crie um plano de estudo bíblico completo em formato JSON com a seguinte estrutura exata:
-
-{
-  "title": "Título do plano de estudo",
-  "description": "Descrição geral do plano",
-  "duration": "${duration} dias",
-  "difficulty": "${difficulty}",
-  "overallObjective": "Objetivo geral do plano de estudo",
-  "dailyBreakdown": [
-    {
-      "day": 1,
-      "title": "Título do dia 1",
-      "description": "Descrição detalhada do dia 1",
-      "scriptureReferences": ["Referência 1", "Referência 2"],
-      "keyPoints": ["Ponto principal 1", "Ponto principal 2", "Ponto principal 3"],
-      "reflectionQuestions": ["Questão 1", "Questão 2"],
-      "memoryVerse": "Versículo para memorizar",
-      "prayerFocus": "Foco de oração"
-    }
-  ],
-  "keyThemes": ["Tema 1", "Tema 2", "Tema 3"],
-  "recommendedResources": ["Recurso 1", "Recurso 2"],
-  "assessmentMethod": "Método de avaliação"
-}
-
-Instruções específicas:
-1. Adapte o conteúdo ao nível de dificuldade: ${difficulty}
-2. Crie exatamente ${duration} dias de estudo
-3. Cada dia deve ter referências bíblicas relevantes e específicas
-4. Inclua pontos principais, questões para reflexão, versículos para memorizar e focos de oração
-5. Os temas devem ser relevantes ao tópico principal: ${topic}
-6. Forneça recursos recomendados apropriados e específicos
-7. Inclua um método claro de avaliação
-8. Seja criativo e prático nas sugestões diárias
-9. Inclua aplicações práticas para a vida cristã
-10. Certifique-se de que cada dia construa sobre o anterior
-
-📝 **Qualidade do Conteúdo:**
-- Seja específico e detalhado em cada seção
-- Inclua referências bíblicas reais e relevantes
-- Crie pontos principais acionáveis e práticos
-- Desenvolva questões reflexivas profundas
-- Escolha versículos significativos para memorização
-- Sugira focos de oração específicos e relevantes
-
-Responda APENAS com o JSON válido, sem texto adicional.`;
+      const enhancedSystemPrompt = studyGeneratorPrompt(duration, difficulty, topic);
 
       const response = await callGeminiWithFallback(
         [
@@ -96,8 +50,8 @@ Responda APENAS com o JSON válido, sem texto adicional.`;
             parts: [{ text: `Crie um plano de estudo bíblico detalhado sobre o tema "${topic}" com duração de ${duration} dias para nível ${difficulty}.` }]
           }
         ], 
-        0.7, 
-        2500,
+        0.9, // Aumentar a temperatura para mais criatividade
+        4000, // Aumentar o maxOutputTokens para respostas mais longas
         // Enhanced fallback JSON response
         JSON.stringify({
           title: `Plano de Estudo: ${topic}`,
@@ -126,33 +80,30 @@ Responda APENAS com o JSON válido, sem texto adicional.`;
         const jsonString = jsonMatch ? (jsonMatch[1] || jsonMatch[0]) : response;
         studyPlan = JSON.parse(jsonString);
         
-        // Ensure the study plan has the correct structure
+        // Apply sanitization and formatting to all string fields in the parsed study plan
         studyPlan = {
           title: sanitizeAndFormatResponse(studyPlan.title || `Plano de Estudo: ${topic}`, 'practical'),
           description: sanitizeAndFormatResponse(studyPlan.description || `Um plano de estudo personalizado sobre ${topic}.`, 'practical'),
           duration: studyPlan.duration || `${duration} dias`,
           difficulty: studyPlan.difficulty || difficulty,
           overallObjective: sanitizeAndFormatResponse(studyPlan.overallObjective || `Aprofundar o conhecimento sobre ${topic}.`, 'practical'),
-          dailyBreakdown: studyPlan.dailyBreakdown || generateEnhancedDailyBreakdown(parseInt(duration), topic, difficulty),
+          dailyBreakdown: studyPlan.dailyBreakdown.map((day, index) => ({
+            day: day.day || index + 1,
+            title: sanitizeAndFormatResponse(day.title || `Dia ${index + 1}`, 'practical'),
+            description: sanitizeAndFormatResponse(day.description || `Estudo sobre ${topic} - Dia ${index + 1}`, 'practical'),
+            scriptureReferences: day.scriptureReferences || [],
+            keyPoints: (day.keyPoints || []).map(point => sanitizeAndFormatResponse(point, 'practical')),
+            reflectionQuestions: (day.reflectionQuestions || []).map(q => sanitizeAndFormatResponse(q, 'practical')),
+            memoryVerse: day.memoryVerse ? sanitizeAndFormatResponse(day.memoryVerse, 'theological') : undefined,
+            prayerFocus: day.prayerFocus ? sanitizeAndFormatResponse(day.prayerFocus, 'practical') : undefined
+          })),
           keyThemes: (studyPlan.keyThemes || [topic]).map(theme => sanitizeAndFormatResponse(theme, 'theological')),
           recommendedResources: (studyPlan.recommendedResources || ["Bíblia", "Caderno de anotações"]).map(resource => sanitizeAndFormatResponse(resource, 'practical')),
           assessmentMethod: sanitizeAndFormatResponse(studyPlan.assessmentMethod || "Autoavaliação e aplicação prática", 'practical')
         };
         
-        // Ensure each day has the correct structure
-        studyPlan.dailyBreakdown = studyPlan.dailyBreakdown.map((day, index) => ({
-          day: day.day || index + 1,
-          title: sanitizeAndFormatResponse(day.title || `Dia ${index + 1}`, 'practical'),
-          description: sanitizeAndFormatResponse(day.description || `Estudo sobre ${topic} - Dia ${index + 1}`, 'practical'),
-          scriptureReferences: day.scriptureReferences || [],
-          keyPoints: (day.keyPoints || []).map(point => sanitizeAndFormatResponse(point, 'practical')),
-          reflectionQuestions: (day.reflectionQuestions || []).map(q => sanitizeAndFormatResponse(q, 'practical')),
-          memoryVerse: day.memoryVerse ? sanitizeAndFormatResponse(day.memoryVerse, 'theological') : undefined,
-          prayerFocus: day.prayerFocus ? sanitizeAndFormatResponse(day.prayerFocus, 'practical') : undefined
-        }));
-        
       } catch (parseError) {
-        console.error('Error parsing JSON response:', parseError);
+        console.error('Error parsing JSON response from Gemini, falling back to structured object:', parseError);
         // Fallback to structured object
         studyPlan = {
           title: sanitizeAndFormatResponse(`Plano de Estudo: ${topic}`, 'practical'),
