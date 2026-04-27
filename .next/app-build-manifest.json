@@ -1,20 +1,89 @@
 {
   "pages": {
-    "/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/layout.css",
-      "static/chunks/app/layout.js"
+    "/api/health/route": [
+      "static/chunks/webpack-d9a2fac0b3269f66.js",
+      "static/chunks/4bd1b696-27ed1f39b6a8c5a4.js",
+      "static/chunks/684-7b40659eed8d8ce1.js",
+      "static/chunks/main-app-0fcde3e0056662dd.js",
+      "static/chunks/app/api/health/route-b2fea898d5d60c7b.js"
+    ],
+    "/robots.txt/route": [
+      "static/chunks/webpack-d9a2fac0b3269f66.js",
+      "static/chunks/4bd1b696-27ed1f39b6a8c5a4.js",
+      "static/chunks/684-7b40659eed8d8ce1.js",
+      "static/chunks/main-app-0fcde3e0056662dd.js",
+      "static/chunks/app/robots.txt/route-780cf5ddbedfa3a8.js"
+    ],
+    "/sitemap.xml/route": [
+      "static/chunks/webpack-d9a2fac0b3269f66.js",
+      "static/chunks/4bd1b696-27ed1f39b6a8c5a4.js",
+      "static/chunks/684-7b40659eed8d8ce1.js",
+      "static/chunks/main-app-0fcde3e0056662dd.js",
+      "static/chunks/app/sitemap.xml/route-caa15892ce7d87be.js"
+    ],
+    "/api/chatbot/route": [
+      "static/chunks/webpack-d9a2fac0b3269f66.js",
+      "static/chunks/4bd1b696-27ed1f39b6a8c5a4.js",
+      "static/chunks/684-7b40659eed8d8ce1.js",
+      "static/chunks/main-app-0fcde3e0056662dd.js",
+      "static/chunks/app/api/chatbot/route-4cab2178e68d7ce7.js"
+    ],
+    "/api/bible-explainer/route": [
+      "static/chunks/webpack-d9a2fac0b3269f66.js",
+      "static/chunks/4bd1b696-27ed1f39b6a8c5a4.js",
+      "static/chunks/684-7b40659eed8d8ce1.js",
+      "static/chunks/main-app-0fcde3e0056662dd.js",
+      "static/chunks/app/api/bible-explainer/route-74e21c89070006ff.js"
+    ],
+    "/api/study-generator/route": [
+      "static/chunks/webpack-d9a2fac0b3269f66.js",
+      "static/chunks/4bd1b696-27ed1f39b6a8c5a4.js",
+      "static/chunks/684-7b40659eed8d8ce1.js",
+      "static/chunks/main-app-0fcde3e0056662dd.js",
+      "static/chunks/app/api/study-generator/route-ffb896c45c783150.js"
     ],
     "/not-found": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/not-found.js"
+      "static/chunks/webpack-d9a2fac0b3269f66.js",
+      "static/chunks/4bd1b696-27ed1f39b6a8c5a4.js",
+      "static/chunks/684-7b40659eed8d8ce1.js",
+      "static/chunks/main-app-0fcde3e0056662dd.js",
+      "static/chunks/app/not-found-58d1291a997d78a2.js"
+    ],
+    "/_not-found/page": [
+      "static/chunks/webpack-d9a2fac0b3269f66.js",
+      "static/chunks/4bd1b696-27ed1f39b6a8c5a4.js",
+      "static/chunks/684-7b40659eed8d8ce1.js",
+      "static/chunks/main-app-0fcde3e0056662dd.js",
+      "static/chunks/app/_not-found/page-2dc50697176ad042.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack-d9a2fac0b3269f66.js",
+      "static/chunks/4bd1b696-27ed1f39b6a8c5a4.js",
+      "static/chunks/684-7b40659eed8d8ce1.js",
+      "static/chunks/main-app-0fcde3e0056662dd.js",
+      "static/css/de70bee13400563f.css",
+      "static/css/9a3ffdb6dcb7927b.css",
+      "static/chunks/232-efd530666c478719.js",
+      "static/chunks/app/layout-9f4934d3d44049a1.js"
     ],
     "/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
+      "static/chunks/webpack-d9a2fac0b3269f66.js",
+      "static/chunks/4bd1b696-27ed1f39b6a8c5a4.js",
+      "static/chunks/684-7b40659eed8d8ce1.js",
+      "static/chunks/main-app-0fcde3e0056662dd.js",
+      "static/chunks/2f0b94e8-26f0502a52757a97.js",
+      "static/chunks/164f4fb6-eb5ea4a8a3a3d590.js",
+      "static/chunks/ad2866b8-c7956e5438da774a.js",
+      "static/chunks/232-efd530666c478719.js",
+      "static/chunks/447-5a030bc7d9940324.js",
+      "static/chunks/app/page-e535a74e20f46110.js"
+    ],
+    "/icon/route": [
+      "static/chunks/webpack-d9a2fac0b3269f66.js",
+      "static/chunks/4bd1b696-27ed1f39b6a8c5a4.js",
+      "static/chunks/684-7b40659eed8d8ce1.js",
+      "static/chunks/main-app-0fcde3e0056662dd.js",
+      "static/chunks/app/icon/route-388cfe8593fed20a.js"
     ]
   }
 }

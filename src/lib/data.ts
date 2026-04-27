@@ -3303,6 +3303,90 @@ export const coursesData: Course[] = [
 <p>Lembre-se sempre: o pregador expositivo eficaz não é aquele que chegou, mas aquele que está sempre caminhando, sempre aprendendo, sempre crescendo. Que Deus nos encontre fiéis nesta jornada de crescimento contínuo para Sua glória.</p>`
       },
       {
+        id: 'expo-11',
+        title: 'Módulo 11: Estudos de Caso Expositivos',
+        content: `<h2>Aplicando a Exposição Bíblica em Sermões Reais</h2>
+<p>Este módulo apresenta estudos de caso práticos que ajudam o pregador a aplicar os princípios expositivos em sermões reais, desde a escolha do texto até a comunicação final.</p>
+
+<h3>Estudo de Caso 1: Sermão sobre Salmo 23</h3>
+<p>O objetivo é demonstrar como extrair o ponto principal, organizar a estrutura e aplicar o texto.</p>
+
+<h4>Passo 1: Identificar o Tema Central</h4>
+<ul>
+<li><strong>Tema:</strong> O cuidado e a provisão do Senhor como Pastor.</li>
+<li><strong>Ponto principal:</strong> Deus guia, protege e restaura seu povo.</li>
+</ul>
+
+<h4>Passo 2: Organizar o Sermão</h4>
+<ul>
+<li><strong>Introdução:</strong> Apresentar a imagem do pastor e a confiança em Deus.</li>
+<li><strong>Corpo:</strong> Expor os versos em três seções: cuidado, proteção e restauração.</li>
+<li><strong>Aplicação:</strong> O que significa confiar no Senhor hoje?</li>
+</ul>
+
+<h4>Passo 3: Aplicação Prática</h4>
+<ul>
+<li>Como responder quando estamos em tempos difíceis?</li>
+<li>Como reconhecer a provisão de Deus nas pequenas coisas?</li>
+<li>Como confiar na direção de Deus quando não vemos o caminho?</li>
+</ul>
+
+<h3>Estudo de Caso 2: Sermão sobre Atos 2:42-47</h3>
+<p>Este texto revela a vida da igreja primitiva e serve para uma pregação expositiva sobre comunhão e transformação comunitária.</p>
+
+<h4>Passo 1: Identificar o Tema Central</h4>
+<ul>
+<li><strong>Tema:</strong> A igreja como comunidade de fé e testemunho.</li>
+<li><strong>Ponto principal:</strong> A verdadeira igreja vive em comunhão, oração e santo testemunho.</li>
+</ul>
+
+<h4>Passo 2: Organizar o Sermão</h4>
+<ul>
+<li><strong>Introdução:</strong> Apresentar a imagem da igreja primitiva.</li>
+<li><strong>Corpo:</strong> Explicar a devoção à doutrina, comunhão, partir do pão e oração.</li>
+<li><strong>Aplicação:</strong> Que evidências da igreja descrita no texto vemos hoje?</li>
+</ul>
+
+<h4>Passo 3: Aplicação Prática</h4>
+<ul>
+<li>Como fortalecer a comunhão na igreja local?</li>
+<li>O que significa viver a fé em comunidade?</li>
+<li>Como ser testemunho no ambiente onde você está inserido?</li>
+</ul>
+
+<h3>Estudo de Caso 3: Sermão sobre João 4:1-26</h3>
+<p>A passagem da mulher samaritana é excelente para pregação expositiva porque combina evangelismo, verdade e transformação.</p>
+
+<h4>Passo 1: Identificar o Tema Central</h4>
+<ul>
+<li><strong>Tema:</strong> A água viva oferecida por Cristo.</li>
+<li><strong>Ponto principal:</strong> Jesus é a fonte de vida que satisfaz todas as necessidades espirituais.</li>
+</ul>
+
+<h4>Passo 2: Organizar o Sermão</h4>
+<ul>
+<li><strong>Introdução:</strong> Contexto cultural e julgamento entre judeus e samaritanos.</li>
+<li><strong>Corpo:</strong> Expor o diálogo de Jesus sobre água, adoração e revelação.</li>
+<li><strong>Aplicação:</strong> Como buscar a água viva nos dias de hoje?</li>
+</ul>
+
+<h4>Passo 3: Aplicação Prática</h4>
+<ul>
+<li>De que forma Cristo preenche as necessidades do nosso coração?</li>
+<li>Como viver uma adoração verdadeira em vez de rituais vazios?</li>
+<li>Como compartilhar a verdade do Evangelho em nosso contexto?</li>
+</ul>
+
+<h3>Principais Lições do Estudo de Caso</h3>
+<ul>
+<li><strong>Fidelidade ao texto:</strong> Cada sermão deve nascer da passagem bíblica.</li>
+<li><strong>Clareza do ponto principal:</strong> A audiência deve entender o que a passagem ensina.</li>
+<li><strong>Aplicação relevante:</strong> O texto deve ser aplicado à vida real hoje.</li>
+<li><strong>Contexto importa:</strong> O entendimento correto do texto depende do seu contexto.</li>
+<li><strong>Dependência do Espírito:</strong> O pregador precisa buscar Deus em oração para comunicar a verdade.</li>
+</ul>`
+      },
+      {
         id: 'expo-quiz',
         title: 'Questionário Final',
         type: 'quiz',

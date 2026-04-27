@@ -1,0 +1,11 @@
+{
+  "/api/health/route": "/api/health",
+  "/robots.txt/route": "/robots.txt",
+  "/sitemap.xml/route": "/sitemap.xml",
+  "/api/chatbot/route": "/api/chatbot",
+  "/api/bible-explainer/route": "/api/bible-explainer",
+  "/api/study-generator/route": "/api/study-generator",
+  "/_not-found/page": "/_not-found",
+  "/page": "/",
+  "/icon/route": "/icon"
+}

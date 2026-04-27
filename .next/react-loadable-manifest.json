@@ -1,18 +1,19 @@
 {
   "../node_modules/jspdf/dist/jspdf.es.min.js -> canvg": {
-    "id": "../node_modules/jspdf/dist/jspdf.es.min.js -> canvg",
+    "id": 34137,
     "files": [
-      "static/chunks/_app-pages-browser_node_modules_canvg_lib_index_es_js.js"
+      "static/chunks/bc98253f.a20b3a3cf1b114d6.js",
+      "static/chunks/121.fc2394a7c6999883.js"
     ]
   },
   "../node_modules/jspdf/dist/jspdf.es.min.js -> dompurify": {
-    "id": "../node_modules/jspdf/dist/jspdf.es.min.js -> dompurify",
+    "id": 10822,
     "files": [
-      "static/chunks/_app-pages-browser_node_modules_dompurify_dist_purify_es_mjs.js"
+      "static/chunks/822.cdab570d5db20a49.js"
     ]
   },
   "../node_modules/jspdf/dist/jspdf.es.min.js -> html2canvas": {
-    "id": "../node_modules/jspdf/dist/jspdf.es.min.js -> html2canvas",
+    "id": 52699,
     "files": []
   }
 }

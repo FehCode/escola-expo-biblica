@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "functions": {
+    "/icon": {},
+    "/api/bible-explainer": {},
+    "/api/chatbot": {},
+    "/api/study-generator": {}
+  }
+}

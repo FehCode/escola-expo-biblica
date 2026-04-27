@@ -41,6 +41,16 @@ Capacitar cristãos, professores e líderes a compreenderem, ensinarem e aplicar
 3.  **Acompanhe seu Progresso**: Utilize o painel do aluno para ver suas conquistas e histórico.
 4.  **Certifique-se**: Ao concluir um curso, emita seu certificado digital e celebre seu aprendizado!
 
+## 🔑 Variáveis de Ambiente
+
+A integração de IA agora utiliza o provedor Groq. Defina a chave de API no ambiente do servidor:
+
+```bash
+GROQ_API_KEY=your-groq-api-key-here
+```
+
+> Não deixe a chave de API exposta em arquivos públicos ou no controle de versão.
+
 ## 👥 Público-Alvo
 
 -   Professores de EBD

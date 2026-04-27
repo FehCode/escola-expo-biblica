@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { callGeminiWithFallback } from '@/lib/gemini-api';
+import { callGroqWithFallback } from '@/lib/groq-api';
 import { sanitizeAndFormatResponse } from '@/lib/ai-sanitizer';
 import { studyGeneratorPrompt } from '@/lib/study-generator-prompt';
 
@@ -26,12 +26,19 @@ interface StudyPlan {
   keyThemes: string[];
   recommendedResources: string[];
   assessmentMethod: string;
+  learningObjectives?: string[];
+  scheduleType?: string;
+  targetAudience?: string;
+  certificates?: boolean;
+  communityFeatures?: boolean;
+  progressTracking?: boolean;
+  totalEstimatedHours?: number;
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const { topic, duration, difficulty } = await request.json();
-    console.log('Study Generator - Input: topic=', topic, ', duration=', duration, ', difficulty=', difficulty);
+    const { topic, duration, difficulty, scheduleType, includeCommunity, includeCertificate, includeProgressTracking, targetAudience } = await request.json();
+    console.log('Study Generator - Input: topic=', topic, ', duration=', duration, ', difficulty=', difficulty, ', scheduleType=', scheduleType, ', includeCertificate=', includeCertificate, ', targetAudience=', targetAudience);
     
     if (!topic) {
       return NextResponse.json({ error: 'Tema é obrigatório' }, { status: 400 });
@@ -44,18 +51,18 @@ export async function POST(request: NextRequest) {
       const userPrompt = `Crie um plano de estudo bíblico detalhado sobre o tema "${topic}" com duração de ${duration} dias para nível ${difficulty}.`;
       const messages = [
         {
-          role: 'user' as const,
-          parts: [{ text: enhancedSystemPrompt }]
+          role: 'system' as const,
+          content: enhancedSystemPrompt
         },
         {
           role: 'user' as const,
-          parts: [{ text: userPrompt }]
+          content: userPrompt
         }
       ];
-      console.log('Study Generator - Messages sent to Gemini:', JSON.stringify(messages, null, 2));
+      console.log('Study Generator - Messages sent to Groq:', JSON.stringify(messages, null, 2));
 
-      const response = await callGeminiWithFallback(
-        messages, 
+      const response = await callGroqWithFallback(
+        messages,
         0.9, // Aumentar a temperatura para mais criatividade
         4000, // Aumentar o maxOutputTokens para respostas mais longas
         // Enhanced fallback JSON response
@@ -77,7 +84,7 @@ export async function POST(request: NextRequest) {
           assessmentMethod: "Avaliação através de: 1) Autoavaliação diária, 2) Compartilhamento em grupo, 3) Aplicação prática dos princípios aprendidos, 4) Memorização dos versículos propostos"
         }, null, 2)
       );
-      console.log('Study Generator - Raw Gemini Response:', response);
+      console.log('Study Generator - Raw Groq response:', response);
 
       // Try to parse the response as JSON
       let studyPlan: StudyPlan;
@@ -113,7 +120,7 @@ export async function POST(request: NextRequest) {
         console.log('Study Generator - Parsed Study Plan (after sanitization):', studyPlan);
         
       } catch (parseError) {
-        console.error('Error parsing JSON response from Gemini, falling back to structured object:', parseError);
+        console.error('Error parsing JSON response from Groq, falling back to structured object:', parseError);
         // Fallback to structured object
         studyPlan = {
           title: sanitizeAndFormatResponse(`Plano de Estudo: ${topic}`, 'practical'),
@@ -131,7 +138,7 @@ export async function POST(request: NextRequest) {
 
       return NextResponse.json({ studyPlan });
     } catch (aiError) {
-      console.error('Error calling Gemini API:', aiError);
+      console.error('Error calling Groq API:', aiError);
       
       // Enhanced fallback study plan when AI service is not available
 
@@ -165,7 +172,18 @@ export async function POST(request: NextRequest) {
           "Dicionário bíblico",
           "Comentários sobre o tema"
         ].map(resource => sanitizeAndFormatResponse(resource, 'practical')),
-        assessmentMethod: sanitizeAndFormatResponse("Autoavaliação diária, compartilhamento em grupo e aplicação prática dos princípios aprendidos.", 'practical')
+        assessmentMethod: sanitizeAndFormatResponse("Autoavaliação diária, compartilhamento em grupo e aplicação prática dos princípios aprendidos.", 'practical'),
+        learningObjectives: [
+          `Compreender os fundamentos de ${topic}`,
+          "Aplicar princípios bíblicos à vida diária",
+          "Desenvolver disciplina de estudo bíblico"
+        ],
+        scheduleType: scheduleType || 'flexível',
+        targetAudience: targetAudience || 'geral',
+        certificates: includeCertificate || false,
+        communityFeatures: includeCommunity || false,
+        progressTracking: includeProgressTracking || false,
+        totalEstimatedHours: (parseInt(duration) || 0) * 1.5
       };
       console.log('Study Generator - Fallback Study Plan (AI Error):', fallbackStudyPlan);
       return NextResponse.json({ studyPlan: fallbackStudyPlan });

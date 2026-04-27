@@ -225,9 +225,9 @@ export function formatSectionedResponse(sections: Array<{ title: string; content
 }
 
 /**
- * Parse Gemini response text into structured sections
+ * Parse chat response text into structured sections
  */
-export function parseGeminiResponseToSections(responseText: string): Array<{ title: string; content: string }> {
+export function parseChatResponseToSections(responseText: string): Array<{ title: string; content: string }> {
   const sections: Array<{ title: string; content: string }> = [];
   const lines = responseText.split('\n');
   let currentTitle = '';

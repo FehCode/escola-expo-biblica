@@ -1,3 +1,11 @@
 {
-  "/page": "app/page.js"
+  "/api/health/route": "app/api/health/route.js",
+  "/robots.txt/route": "app/robots.txt/route.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js",
+  "/api/chatbot/route": "app/api/chatbot/route.js",
+  "/api/bible-explainer/route": "app/api/bible-explainer/route.js",
+  "/api/study-generator/route": "app/api/study-generator/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/page": "app/page.js",
+  "/icon/route": "app/icon/route.js"
 }
